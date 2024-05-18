@@ -2,7 +2,7 @@ from logical_expression import LogicalExpression
 from truth_table import get_truth_table
 from forms import index_form, build_sdnf, build_sknf
 
-logical_formula = LogicalExpression(input("Enter your logical expretion: "))
+logical_formula = LogicalExpression(input("Enter your logical expression: "))
 
 print("Truth table:\n")
 for i in get_truth_table(logical_formula):
