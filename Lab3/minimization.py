@@ -1,7 +1,3 @@
-from logical_expression import LogicalExpression
-from truth_table import get_truth_table
-from forms import get_normal_form
-
 def get_variables(full_normal_form: str) -> list[set]:
 
     variables = set()
@@ -24,6 +20,23 @@ def get_variables(full_normal_form: str) -> list[set]:
         else: i += 1
 
     return result
+
+def get_normal_form(variables: list[set], form_type: chr):
+
+    sknf = ''
+    operations = ['|', '&'] if form_type != '|' else ['&', '|']
+
+    for i, conjuct in enumerate(variables):
+
+        sknf += '('
+
+        while conjuct:
+            if len(conjuct) != 1: sknf += conjuct.pop() + f'{operations[0]}' 
+            else: sknf += conjuct.pop()
+
+        sknf += f"){operations[1]}" if (i + 1 != len(variables)) else ')'
+
+    return sknf
 
 def delete_duplicates(list):
 
@@ -97,9 +110,13 @@ def delete_extra(post_variables: list[set]):
 def get_formula_type(logical_formula: str) -> chr:
 
     closebracket_index = logical_formula.find(')')
+    if closebracket_index == len(logical_formula) - 1: 
+        return '|' if '|' in logical_formula else '&'
     return logical_formula[closebracket_index + 1]
 
-def minimization(logical_formula): 
+def calculate_minimization(logical_formula): 
+
+
 
     implicants = get_variables(logical_formula)
     formula_type = get_formula_type(logical_formula)
@@ -154,17 +171,12 @@ def table_minimization(logical_formula: str):
 
     return get_normal_form(minimum_variables, formula_type)
 
-if __name__ == "__main__":
+def carno_minimization(logical_formula: str):
 
-    logical_formula = input("Enter sknf or sdnf: ")
+    implicants = get_variables(logical_formula)
+    formula_type = get_formula_type(logical_formula)
 
-    print("\nCalculation method:")
-    print(minimization(logical_formula))
-    print("\nTable-calculation method:")
-    print(table_minimization(logical_formula))
-    # sknf = get_normal_form(gluing(get_variables(logical_formula)), '|')
-    # logical_sknf = LogicalExpression(sknf + "|(a&c)")
-    # truth_table = get_truth_table(logical_sknf)
-    # for i in truth_table:
-    #     print(i)
-    
+    post_variables = gluing(implicants)
+    post_variables = delete_extra(post_variables)
+
+    return get_normal_form(post_variables, formula_type)

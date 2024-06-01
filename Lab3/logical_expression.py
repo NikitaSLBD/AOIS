@@ -1,6 +1,7 @@
 from validator import Validator
-from expression_exception import ValidateError
 
+class ValidateError(Exception):
+    pass
 
 def parse_brackets(open_bracket_index: int, expression: str) -> str:
 
