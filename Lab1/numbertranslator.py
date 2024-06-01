@@ -19,7 +19,7 @@ def bin_sign_to_dec(bin_sign: str) -> int:
 
     dec = 0
 
-    for i in range(len(bin_sign)):
+    for i in range(1, len(bin_sign)):
         dec += 2 ** (-i + len(bin_sign) - 1) * int(bin_sign[i]) 
     
     if bin_sign[0] != "0" and len(bin_sign) > 16: return -dec

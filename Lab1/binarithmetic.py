@@ -204,8 +204,8 @@ def calculate_mantisses_sum(exponent1: str, mantissa1: str, exponent2: str, mant
 
     if mantiss_sum[0] == "1":
         exponent_sum = adding("0" + exponent_sum, "1".zfill(9))[-8:]
-        mantiss_sum = mantiss_sum[1:23]
-    else: mantiss_sum = mantiss_sum[2:23]
+        mantiss_sum = mantiss_sum[1:24]
+    else: mantiss_sum = mantiss_sum[2:25]
 
     return mantiss_sum, exponent_sum
 

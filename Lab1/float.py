@@ -43,10 +43,10 @@ class Float:
             if not sign:
 
                 self.__value: float = evaluate_mantissa(bin_mantissa) * 2 ** \
-                                    (bin_sign_to_dec(bin_exponent) - 127)
+                                    (bin_sign_to_dec('0' + bin_exponent) - 127)
             
             else: self.__value: float = -evaluate_mantissa(bin_mantissa) * 2 ** \
-                                    (bin_sign_to_dec(bin_exponent) - 127)
+                                    (bin_sign_to_dec('0' + bin_exponent) - 127)
 
         elif number or number == 0:
 

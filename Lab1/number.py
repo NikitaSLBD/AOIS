@@ -63,7 +63,7 @@ class Number:
             self._bin_sign = dec_to_bin_sign(self._dec)
         elif isinstance(value, str):
             self._bin_sign = value
-            self._dec = bin_sign_to_dec(self._bin_sign[1:])
+            self._dec = bin_sign_to_dec(self._bin_sign)
         elif value == "1" + "0" * 31:
             self._dec = 0
             self._bin_sign = "0" * 32

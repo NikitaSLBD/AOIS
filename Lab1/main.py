@@ -1,6 +1,6 @@
 from number import Number
 from binarithmetic import plus, minus, multiplication, division, float_plus
-from float import evaluate_mantissa, Float
+from float import Float
 
 int_num1 = Number(int(input("Enter first integer number: ")))
 int_num2 = Number(int(input("Enter second integer number: ")))
